@@ -1,17 +1,16 @@
 function convertTimer(timer) {
     if (timer.toString().length === 1) {
         return '0' + timer;
-    } 
-    console.log(timer.toString())
+    }
     return timer;
 }
 
 PB.on('statusChange', newStatus => {
-    console.log(newStatus)
+    //console.log(newStatus)
 });
 
+
 PB.on('newState', newState => {
-    // console.log(newState);
     const state = newState.state;
     const config = state.config.frontend;
 
@@ -20,6 +19,7 @@ PB.on('newState', newState => {
         activeTeam = 'red';
     }
 
+    
     // Update timers
     if (state.timer <= 60) {
         if (activeTeam === 'blue') {
@@ -27,7 +27,7 @@ PB.on('newState', newState => {
             document.getElementById('blue_timer').innerText = ':' + convertTimer(state.timer);
         } else {
             document.getElementById('blue_timer').innerText = '';
-            document.getElementById('red_timer').innerText = ':' + convertTimer(state.timer);
+            document.getElementById('red_timer').innerText =  convertTimer(state.timer) + ':';
         }
     } else {
         document.getElementById('blue_timer').innerText = '';
@@ -47,8 +47,6 @@ PB.on('newState', newState => {
     // Update picks
     const updatePicks = team => {
         const teamData = team === 'blue' ? state.blueTeam : state.redTeam;
-        const teamName = team === 'blue' ? config.blueTeam.short : config.redTeam.short;
-        console.log(teamData);
 
         last = teamData.picks.length;
 
@@ -57,7 +55,6 @@ PB.on('newState', newState => {
             const text = document.getElementById(`picks_${team}_text_${index}`);
             const ss1 = document.getElementById(`ss1_${team}_${index}`);
             const ss2 = document.getElementById(`ss2_${team}_${index}`);
-            // console.log(pick, index);
 
             if (pick.champion.id === 0) {
                 // Not picked yet, hide
@@ -65,22 +62,20 @@ PB.on('newState', newState => {
                 ss1.classList.add('hidden');
                 ss2.classList.add('hidden')
             } else {
-                // We have a pick to show
                 splash.src = PB.toAbsoluteUrl(pick.champion.splashCenteredImg);
                 splash.classList.remove('hidden');
+                splash.classList.add('slide-right')
                 ss1.src = PB.toAbsoluteUrl(pick.spell1.icon);
                 ss2.src = PB.toAbsoluteUrl(pick.spell2.icon);
                 ss1.classList.remove('hidden');
                 ss2.classList.remove('hidden');
             }
-            console.log(index, last, pick.champion.id);
 
-            text.innerText = teamName + " " + pick.displayName;
+            text.innerText = pick.displayName;
         });
 
         teamData.bans.forEach((ban, index) => {
             const splash = document.getElementById(`bans_${team}_splash_${index}`);
-            // console.log(ban)
 
             if (ban.champion.id === 0) {
                 // Not banned yet, hide
@@ -89,9 +84,10 @@ PB.on('newState', newState => {
                 // We have a ban to show
                 splash.src = PB.toAbsoluteUrl(ban.champion.splashCenteredImg);
                 splash.classList.remove('hidden');
+                splash.classList.add('slide-top');
             }
 
-            // console.log(splash, ban);
+            console.log(splash, ban);
         });
     };
     updatePicks('blue');
@@ -132,7 +128,7 @@ function inject(team) {
     const banTemplate = `
 <div class="ban">
     <div class="splash">
-        <img src="" id="bans_${team}_splash_%id%" class="hidden">
+        <img src="" id="bans_${team}_splash_%id%" class="hidden ">
     </div>
 </div>`;
 

@@ -1,18 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 body {
     margin: 0;
     overflow: hidden;
 
-    font-family: "Roboto", sans-serif;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+
     font-weight: 700;
-    background-color: rgb(0, 248, 33);
 }
 
 :root {
     --bar-height: 150px;
     --bar-text-width: 660px;
     --bar-timer-width: 170px;
-    --bar-middle-width: 240px;
-    --bar-big-text-size: 60px;
+    --bar-middle-width: 200px;
+    --bar-big-text-size: 80px;
 
     --bar-blue-text-margin: 0 0 0 30px;
     --bar-red-text-margin: 0 30px 0 0;
@@ -26,18 +29,21 @@ body {
 }
 
 .hidden {
-    display: none;
+    /* display: none; */
+    opacity: 0;
 }
+
 
 .reveal {
     opacity: 1;
 }
 
 #overlay > img {
-    width: 100%;
-    height: 100vh;
+    width: 1920px;
+    height: 1080px;
     overflow: hidden;
     position: absolute;
+    z-index: -10;
 }
 
 
@@ -46,28 +52,18 @@ body {
     width: 100%;
     position: absolute;
     display: flex;
-
+    z-index: 10;
     background-color: var(--debug-color-green);
 }
 
 #bar .text {
     height: 100%;
     width: var(--bar-text-width);
-    /* background-image: linear-gradient(#FFFFFF, rgb(129,129,129));
-    background-size: 100% 100%;
-    -webkit-background-clip: text; */
 }
 #bar .text span {
-    /* -webkit-text-fill-color: transparent; */
-    background-image: linear-gradient(#DE092C, #FF5C00);
+    background-image: linear-gradient(#FFFFFF, rgb(129,129,129));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 1px 1px 6px black;
-    min-height: 100px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 100;
 }
 
 #bar .timer {
@@ -75,7 +71,7 @@ body {
     width: var(--bar-timer-width);
 }
 #bar .timer span {
-    background-image: linear-gradient(rgb(38,38,38), rgb(44,44,44));
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -100,7 +96,7 @@ body {
     line-height: calc(var(--bar-height) * 0.65);
     text-align: center;
 
-    background-image: linear-gradient(rgb(38,38,38), rgb(44,44,44));
+    background-image: linear-gradient(rgb(222, 9, 44), rgb(222, 9, 44));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -113,10 +109,8 @@ body {
     line-height: calc(var(--bar-height) * 0.35 * 0.55);
     text-align: center;
 
-    /* background-image: linear-gradient(#FFFFFF, rgb(129,129,129));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
-    background-image: linear-gradient(#FFFFFF, rgb(255, 255, 255));
+    background-image: linear-gradient(rgb(222, 9, 44), rgb(222, 9, 44));
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -140,7 +134,7 @@ body {
 .picks {
     position: absolute;
     top: 183px;
-    width: 426px;
+    width: 400px;
     height: 690px;
 
     display: flex;
@@ -165,17 +159,12 @@ body {
 }
 
 .picks .pick .text {
-    /* background-image: linear-gradient(#FFFFFF, rgb(129,129,129)); */
-    /* -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
-
-    background-image: linear-gradient(#FFFFFF, rgb(255, 255, 255));
+    background-image: linear-gradient(#FFFFFF, rgb(129,129,129));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 1px 1px 6px black;
+
     font-size: 24px;
-    margin: 0 10px;
-    font-weight: normal;
+
     margin: 0 10px;
 }
 .picks.blue .pick .text {
@@ -190,7 +179,6 @@ body {
     height: auto !important;
     width: 100%;
     overflow: hidden;
-    margin-top: -25px;
 }
 
 .bans {
@@ -234,40 +222,10 @@ body {
 
     margin-top: 0px;
     margin-left: -206px;
-    animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 .bans.red .ban .splash img {
     margin-top: 0px;
     margin-left: -182px;
-    animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
-
-@keyframes slide-top {
-    0% {
-      transform: translateY(-100px);
-      background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(222,62,9,0) 100%);
-    }
-    25% {
-      transform: translateY(0);
-      background: rgb(255,255,255);
-    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(222,62,9,0) 100%);
-    }
-    50% {
-        transform: translateY(0);
-        background: rgb(255,64,1);
-        background: linear-gradient(180deg, rgba(255,64,1,0.09567577030812324) 0%, rgba(255,64,1,1) 81%);
-    }
-    75% {
-        transform: translateY(0);
-        background: rgb(255,64,1);
-background: linear-gradient(180deg, rgba(255,64,1,0) 0%, rgba(255,64,1,0.8379726890756303) 100%);
-    }
-    100% {
-        transform: translateY(0);
-        background: rgb(255,64,1);
-        background: linear-gradient(180deg, rgba(255,64,1,0) 0%, rgba(255,64,1,0) 100%);
-    }
 }
 
 .bans.blue .ban:first-child {
@@ -295,16 +253,6 @@ background: linear-gradient(180deg, rgba(255,64,1,0) 0%, rgba(255,64,1,0.8379726
 .bans.red .ban .splash img {
     transform: rotate(-15deg);
 }
-
-#blue_timer {
-    margin-right: 2rem;
-}
-#red_timer {
-    margin-left: 1.6rem;
-}
-/* #red_name {
-    margin-left: -1rem;
-} */
 
 .fade-in {
     animation: fadeIn ease 10s;
@@ -398,18 +346,108 @@ background: linear-gradient(180deg, rgba(255,64,1,0) 0%, rgba(255,64,1,0.8379726
 }
 
 .pulsate {
-    -webkit-animation: pulsate 3s ease-out;
-    -webkit-animation-iteration-count: infinite; 
-    opacity: 0.5;
+    -webkit-animation: pulsate 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: pulsate 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 @-webkit-keyframes pulsate {
     0% { 
-        opacity: 0;
+        background: rgb(255,64,1);
+        background: -moz-linear-gradient(90deg, rgba(255,64,1,0) 0%, rgba(255,64,1,0) 100%);
+        background: -webkit-linear-gradient(90deg, rgba(255,64,1,0) 0%, rgba(255,64,1,0) 100%);
+        background: linear-gradient(90deg, rgba(255,64,1,0) 0%, rgba(255,64,1,0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff4001",endColorstr="#ff4001",GradientType=1);
     }
     50% { 
-        opacity: 1.0;
+        background: rgb(255,64,1);
+background: -moz-linear-gradient(90deg, rgba(255,64,1,0) 0%, rgba(255,64,1,1) 100%);
+background: -webkit-linear-gradient(90deg, rgba(255,64,1,0) 0%, rgba(255,64,1,1) 100%);
+background: linear-gradient(90deg, rgba(255,64,1,0) 0%, rgba(255,64,1,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff4001",endColorstr="#ff4001",GradientType=1);
     }
     100% { 
-        opacity: 0;
+        background: rgb(255,64,1);
+background: -moz-linear-gradient(90deg, rgba(255,64,1,0) 0%, rgba(255,64,1,0) 100%);
+background: -webkit-linear-gradient(90deg, rgba(255,64,1,0) 0%, rgba(255,64,1,0) 100%);
+background: linear-gradient(90deg, rgba(255,64,1,0) 0%, rgba(255,64,1,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff4001",endColorstr="#ff4001",GradientType=1);
     }
 }
+
+.slide-top {
+	-webkit-animation: slide-top 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2021-6-13 14:50:19
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-top
+ * ----------------------------------------
+ */
+ @-webkit-keyframes slide-top {
+    0% {
+      -webkit-transform: translateY(-100px);
+              transform: translateY(-100px);
+    }
+    25% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+    
+  }
+  @keyframes slide-top {
+    0% {
+      -webkit-transform: translateY(-100px);
+              transform: translateY(-100px);
+    }
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+  }
+  
+
+.slide-right {
+    -webkit-animation: slide-right 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        animation: slide-right 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2021-6-13 15:3:33
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-right
+ * ----------------------------------------
+ */
+ @-webkit-keyframes slide-right {
+    0% {
+      -webkit-transform: translateX(100px);
+              transform: translateX(100px);
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+  }
+  @keyframes slide-right {
+    0% {
+      -webkit-transform: translateX(100px);
+              transform: translateX(100px);
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+  }
+  

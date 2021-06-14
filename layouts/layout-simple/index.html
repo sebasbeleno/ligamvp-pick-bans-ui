@@ -5,14 +5,10 @@
 
     <link href="./style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Merriweather+Sans:wght@700&family=Passion+One:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="overlay">
-    <img src="overlay.png" alt="overlay" style="z-index: 0;" />
-    <img src="blank.gif" alt="underlay" style="z-index: -100;" />
-
+    
     <div id="bar">
         <div class="blue text flex-vcenter">
             <span class="big-text" id="blue_name">TEAM 1</span>
@@ -35,12 +31,13 @@
             <span class="big-text" id="red_name">TEAM 2</span>
         </div>
     </div>
-
+    
     <div class="picks blue" id="picks_blue"></div>
     <div class="picks red" id="picks_red"></div>
-
+    
     <div class="bans blue" id="bans_blue"></div>
     <div class="bans red" id="bans_red"></div>
+    <img src="overlay.png" alt="overlay" style="z-index: -100;" />
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
